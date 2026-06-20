@@ -13,3 +13,27 @@ Future Features:
 3. Analytics
 4. Bar charts
 */
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+class Task
+{
+    string name;
+    public: 
+    Task(){}
+    Task(string taskname)
+    {
+        name = taskname;
+    }
+    string getName()
+    {
+        return name;
+    }
+};
+int main()
+{
+    Task t("DSA");
+    cout<< t.getName();
+    return 0;
+}
