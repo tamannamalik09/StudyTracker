@@ -33,7 +33,16 @@ class Task
 };
 int main()
 {
-    Task t("DSA");
-    cout<< t.getName();
+    cout<<"============= STUDY TRACKER ============="<<endl<<endl;
+    vector<Task> tasks;
+    string taskname; 
+    cout<<"Enter Task: ";
+    getline(cin, taskname); // to get the whole line ex: web development
+    tasks.push_back(Task(taskname));
+    for(int i = 0; i < tasks.size(); i++)
+    {
+        cout<< tasks[i].getName() << endl;
+    }
+    cout<<endl;
     return 0;
 }
