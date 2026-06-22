@@ -1,5 +1,5 @@
 /* 
-Time TRACKER V1
+Study Tracker V1
 Features: 
 1. Add Task 
 2. View Tasks
@@ -17,6 +17,7 @@ Future Features:
 #include<iostream>
 #include<vector>
 #include<string>
+#include<fstream>
 using namespace std;
 class Task
 {
@@ -40,13 +41,15 @@ int main()
     vector<Task> tasks;
     string taskname; 
     int choice = 0;
-    while(choice != 4)
+    while(choice != 6)
     {
         cout<<"\nChoose what you would like to do:"<<endl;
         cout<<"1. Add Task"<<endl;
         cout<<"2. View Tasks"<<endl;
         cout<<"3. Delete Task"<<endl;
-        cout<<"4. Exit"<<"\n"<<endl;
+        cout<<"4. Save Tasks"<<endl;
+        cout<<"5. Load Tasks"<<endl;
+        cout<<"6. Exit"<<endl<<endl;
         cout<<"Enter choice: ";
         cin>>choice;
         if(cin.fail())//detect when user enters wrong type of input
@@ -100,6 +103,28 @@ int main()
                     cout<<"Task Deleted Successfully!"<<endl;
                 }
             }
+        }
+        if(choice == 4)
+        {
+            ofstream file("tasks.txt");
+            for(int i = 0; i < tasks.size(); i++)
+                {
+                    file<<tasks[i].getName() << endl;
+                }
+            file.close();
+            cout<<"Tasks saved successfully!"<<endl;
+        }
+        if(choice == 5)
+        {
+            tasks.clear();// so same task can't be added twice
+            ifstream file("tasks.txt");
+            string line;
+            while(getline(file,line))
+            {
+                tasks.push_back(Task(line));
+            }
+            file.close();
+            cout<<"Tasks loaded successfully!"<<endl;
         }
     }
     cout<<endl;
