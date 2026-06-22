@@ -4,8 +4,9 @@ Features:
 1. Add Task 
 2. View Tasks
 3. Save Tasks
-4. Load Tasks
-5. Exit
+4. Delete Tasks
+5. Load Tasks
+6. Exit
 
 Future Features:
 1. Start Timer
@@ -33,15 +34,73 @@ class Task
 };
 int main()
 {
-    cout<<"============= STUDY TRACKER ============="<<endl<<endl;
+    cout<<"============================================"<<endl;
+    cout<<"                STUDY TRACKER               "<<endl;
+    cout<<"============================================"<<endl<<endl;
     vector<Task> tasks;
     string taskname; 
-    cout<<"Enter Task: ";
-    getline(cin, taskname); // to get the whole line ex: web development
-    tasks.push_back(Task(taskname));
-    for(int i = 0; i < tasks.size(); i++)
+    int choice = 0;
+    while(choice != 4)
     {
-        cout<< tasks[i].getName() << endl;
+        cout<<"\nChoose what you would like to do:"<<endl;
+        cout<<"1. Add Task"<<endl;
+        cout<<"2. View Tasks"<<endl;
+        cout<<"3. Delete Task"<<endl;
+        cout<<"4. Exit"<<"\n"<<endl;
+        cout<<"Enter choice: ";
+        cin>>choice;
+        if(cin.fail())//detect when user enters wrong type of input
+        {
+            cin.clear();//removes the fail data
+            cin.ignore(1000, '\n');
+            cout<<"Invalid input!"<<endl;
+            continue;
+        }
+        if(choice == 1)
+        {
+            cin.ignore();
+            cout<<"Enter Task: ";
+            getline(cin, taskname); // to get the whole line ex: web development
+            tasks.push_back(Task(taskname));
+            cout<<endl;
+            cout<<"Task Added Successfully!"<<endl;
+        }
+        if(choice == 2)
+        {
+            if(tasks.size() == 0)
+              cout<<"No tasks found!"<<endl;
+            else
+            {
+                cout<<"Tasks List:"<<endl;
+                for(int i = 0; i < tasks.size(); i++)
+                {
+                    cout<< i+1<<". "<<tasks[i].getName() << endl;
+                }
+            }
+        }
+        if(choice == 3)
+        {
+            int del;
+            if(tasks.size() == 0)
+              cout<<"No tasks found!"<<endl;
+            else
+            {
+                cout<<"Which task would u like to delete:"<<endl;
+                for(int i = 0; i < tasks.size(); i++)
+                    {
+                        cout<< i+1<<". "<<tasks[i].getName() << endl;
+                    }
+                cout<<"Enter Task number: ";
+                cin>>del;
+                if(del<1 || del>tasks.size())
+                cout<<"Invalid Task number!"<<endl;
+                else
+                {
+                    tasks.erase(tasks.begin()+(del-1));//coz the vector start from index 0
+                    cout<<"Task Deleted Successfully!"<<endl;
+                }
+            }
+        }
     }
     cout<<endl;
     return 0;
