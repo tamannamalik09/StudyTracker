@@ -56,6 +56,23 @@ void displayTasks(vector<Task> &tasks)
         cout<<endl;
     }
 }
+void showProgress(vector<Task> &tasks)
+{
+    if(tasks.size() == 0)
+    {
+        cout<<"No tasks available!"<<endl;
+        return;
+    }
+    int completedCount = 0;
+    for(int i = 0; i<tasks.size(); i++)
+    {
+        if(tasks[i].isCompleted())
+          completedCount++;
+    }
+    cout<<"Completed Tasks: "<<completedCount<<" / "<<tasks.size()<<endl;
+    double progress = (double)completedCount / tasks.size() * 100;
+    cout<<"Progress: "<<progress<<"%"<<endl;
+}
 int main()
 {
     cout<<"============================================"<<endl;
@@ -64,7 +81,7 @@ int main()
     vector<Task> tasks;
     string taskname; 
     int choice = 0;
-    while(choice != 7)
+    while(choice != 8)
     {
         cout<<"\nChoose what you would like to do:"<<endl;
         cout<<"1. Add Task"<<endl;
@@ -73,9 +90,11 @@ int main()
         cout<<"4. Save Tasks"<<endl;
         cout<<"5. Load Tasks"<<endl;
         cout<<"6. Mark Task complete"<<endl;
-        cout<<"7. Exit"<<endl<<endl;
+        cout<<"7. Show Progress"<<endl;
+        cout<<"8. Exit"<<endl<<endl;
         cout<<"Enter choice: ";
         cin>>choice;
+        cout<<endl;
         if(cin.fail())//detect when user enters wrong type of input
         {
             cin.clear();//removes the fail data
@@ -154,6 +173,10 @@ int main()
                 cout<<"Task marked as completed!"<<endl;
             }
             else cout<<"Invalid Task number!"<<endl;
+        }
+        if(choice == 7)
+        {
+            showProgress(tasks);
         }
     }
     cout<<endl;
