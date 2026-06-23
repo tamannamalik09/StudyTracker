@@ -22,17 +22,40 @@ using namespace std;
 class Task
 {
     string name;
+    bool completed;
     public: 
     Task(){}
     Task(string taskname)
     {
         name = taskname;
+        completed = false;
     }
     string getName()
     {
         return name;
     }
+    void markcomplete()
+    {
+        completed = true;
+    }
+    bool isCompleted()
+    {
+        return completed;
+    }
 };
+void displayTasks(vector<Task> &tasks)
+{
+    for(int i = 0; i < tasks.size(); i++)
+    {
+        cout<< i+1<<". "<<tasks[i].getName();
+        if(tasks[i].isCompleted())
+        {
+            cout<<" [Done]";
+        }
+        else cout<<" [Pending]";
+        cout<<endl;
+    }
+}
 int main()
 {
     cout<<"============================================"<<endl;
@@ -41,7 +64,7 @@ int main()
     vector<Task> tasks;
     string taskname; 
     int choice = 0;
-    while(choice != 6)
+    while(choice != 7)
     {
         cout<<"\nChoose what you would like to do:"<<endl;
         cout<<"1. Add Task"<<endl;
@@ -49,7 +72,8 @@ int main()
         cout<<"3. Delete Task"<<endl;
         cout<<"4. Save Tasks"<<endl;
         cout<<"5. Load Tasks"<<endl;
-        cout<<"6. Exit"<<endl<<endl;
+        cout<<"6. Mark Task complete"<<endl;
+        cout<<"7. Exit"<<endl<<endl;
         cout<<"Enter choice: ";
         cin>>choice;
         if(cin.fail())//detect when user enters wrong type of input
@@ -75,10 +99,7 @@ int main()
             else
             {
                 cout<<"Tasks List:"<<endl;
-                for(int i = 0; i < tasks.size(); i++)
-                {
-                    cout<< i+1<<". "<<tasks[i].getName() << endl;
-                }
+                displayTasks(tasks);
             }
         }
         if(choice == 3)
@@ -89,10 +110,7 @@ int main()
             else
             {
                 cout<<"Which task would u like to delete:"<<endl;
-                for(int i = 0; i < tasks.size(); i++)
-                    {
-                        cout<< i+1<<". "<<tasks[i].getName() << endl;
-                    }
+                displayTasks(tasks);
                 cout<<"Enter Task number: ";
                 cin>>del;
                 if(del<1 || del>tasks.size())
@@ -107,10 +125,7 @@ int main()
         if(choice == 4)
         {
             ofstream file("tasks.txt");
-            for(int i = 0; i < tasks.size(); i++)
-                {
-                    file<<tasks[i].getName() << endl;
-                }
+            displayTasks(tasks);
             file.close();
             cout<<"Tasks saved successfully!"<<endl;
         }
@@ -125,6 +140,20 @@ int main()
             }
             file.close();
             cout<<"Tasks loaded successfully!"<<endl;
+        }
+        if(choice == 6)
+        {
+            cout<<"Which task would u like to mark as complete:"<<endl;
+            displayTasks(tasks);
+            int num;
+            cout<<"Enter choice: ";
+            cin>>num;
+            if(num>=1 && num<=tasks.size())
+            {
+                tasks[num-1].markcomplete();
+                cout<<"Task marked as completed!"<<endl;
+            }
+            else cout<<"Invalid Task number!"<<endl;
         }
     }
     cout<<endl;
