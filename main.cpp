@@ -167,8 +167,15 @@ int main()
                 cout<<"Invalid Task number!"<<endl;
                 else
                 {
-                    tasks.erase(tasks.begin()+(del-1));//coz the vector start from index 0
-                    cout<<"Task Deleted Successfully!"<<endl;
+                    if(timerActive && currentTask == del - 1)
+                    {
+                        cout<<"Cannot delete a task while its timer is running!"<<endl;
+                    }
+                    else
+                    {
+                        tasks.erase(tasks.begin()+(del-1));//coz the vector start from index 0
+                        cout<<"Task Deleted Successfully!"<<endl;
+                    }
                 }
             }
         }
@@ -227,10 +234,17 @@ int main()
                     displayTasks(tasks);
                     cout<<"Enter task number: ";
                     cin>>num;
-                    tasks[num-1].startTimer();
-                    timerActive = true;
-                    currentTask = num - 1;
-                    cout<<"Timer started!"<<endl;
+                    if(num < 1 || num > tasks.size())
+                    {
+                        cout<<"Invalid Task number!"<<endl;
+                    }
+                    else
+                    {
+                        tasks[num-1].startTimer();
+                        timerActive = true;
+                        currentTask = num - 1;
+                        cout<<"Timer started!"<<endl;
+                    }
                 }
             }
         }
