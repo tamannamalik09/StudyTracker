@@ -1,32 +1,40 @@
 # Study Tracker
 
-A simple command-line Study Tracker built using C++ and Object-Oriented Programming concepts. This application helps users manage their study tasks through an interactive menu-driven interface.
+A command-line Study Tracker built using C++ and Object-Oriented Programming (OOP) concepts. This application helps users organize study tasks, track progress, save/load tasks, and record study time through an interactive menu-driven interface.
 
 ---
 
 ## Features
 
--  Add new study tasks
--  View all tasks
--  Delete tasks
--  Input validation for menu choices
--  Numbered task listing
--  Menu-driven interface
--  Exit option
+- Add new study tasks
+- View all tasks
+- Delete tasks
+- Save tasks to a file
+- Load tasks from a file
+- Mark tasks as completed
+- Track study time using a timer
+- Start and stop timers for tasks
+- Display study time for each task
+- View task completion statistics
+- Show pending and completed tasks
+- Input validation for task selection
+- Menu-driven user interface
 
 ---
 
-##  Technologies Used
+## Technologies Used
 
 - C++
 - Object-Oriented Programming (OOP)
 - STL Vector
-- Loops and Conditionals
+- File Handling (fstream)
+- Chrono Library
+- Loops and Conditional Statements
 - Input Validation
 
 ---
 
-##  Sample Menu
+## Sample Menu
 
 ```text
 Choose what you would like to do:
@@ -34,52 +42,98 @@ Choose what you would like to do:
 1. Add Task
 2. View Tasks
 3. Delete Task
-4. Exit
+4. Save Tasks
+5. Load Tasks
+6. Mark Task Complete
+7. Show Progress
+8. Start Timer
+9. Stop Timer
+10. Exit
 
 Enter choice:
 ```
 
 ---
 
-## 📖 Concepts Practiced
+## Concepts Practiced
 
 This project helped me practice:
 
 - Classes and Objects
 - Constructors
 - Encapsulation
-- Vectors (STL)
-- Loops
-- Conditional Statements
+- STL Vectors
+- File Handling
+- Chrono Library
 - User Input Handling
+- Conditional Statements
+- Loops
 - Basic Error Handling
 
 ---
 
-##  Future Improvements
+## Project Structure
 
-- Mark tasks as completed
-- Save tasks to a file
-- Load tasks from a file
-- Add task priorities
-- Add study timer functionality
+### Task Class
+
+Each task stores:
+
+- Task name
+- Completion status
+- Study time in minutes
+- Timer state
+- Start timestamp
+
+### Main Features
+
+- Task management
+- Progress tracking
+- File persistence
+- Time tracking
+- Statistics generation
 
 ---
 
-## 👩‍💻 Author
+## Statistics Available
 
-**Tamanna**
+The application displays:
+
+- Total tasks
+- Completed tasks
+- Pending tasks
+- Completion percentage
+- Study time per task
 
 ---
 
-## ⭐ Project Status
+## Future Improvements
 
-Completed Version 1.0
+- Task priorities
+- Task deadlines
+- Daily study reports
+- Data visualization with charts
+- Export statistics to files
+- Better analytics dashboard
+
+---
+
+## Author
+
+Tamanna
+
+---
+
+## Project Status
+
+⭐ Version 1.0 Complete
 
 Current Features:
-- Add Tasks
-- View Tasks
-- Delete Tasks
-- Input Validation
 
-Future versions will include file handling and task completion tracking.
+- Task Management
+- File Handling
+- Task Completion Tracking
+- Progress Statistics
+- Study Timer
+- Time Tracking
+
+This project was built to practice C++ fundamentals, OOP concepts, file handling, STL containers, and time-based functionality using the Chrono library.
